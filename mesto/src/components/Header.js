@@ -13,10 +13,8 @@ function Header({ loggedIn, email, entranceOut }) {
             <p className='registered__text'>{email}</p>
             <p className='registered__enter' onClick={entranceOut}>Выйти</p>
           </>}
-        {!loggedIn && location.pathname === '/sign-in' &&
-          <Link to='/sign-up' className='registered__enter' >Регистрация</Link>}
-        {!loggedIn && location.pathname === '/sign-up' &&
-          <Link to='/sign-in' className='registered__enter' >Войти</Link>}
+        {!loggedIn && location.pathname === '/sign-in' && <Link to='/sign-up' className='registered__enter' >Регистрация</Link>}
+        {!loggedIn && location.pathname === '/sign-up' && <Link to='/sign-in' className='registered__enter' >Войти</Link>}
       </div>
     </div>
   );
