@@ -57,6 +57,23 @@ function App() {
     setSelectedCard({})
   }
 
+  const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || selectedCard.link
+
+  React.useEffect(() => {
+    function closeByEscape(evt) {
+      if(evt.key === 'Escape') {
+        closeAllPopups();
+      }
+    }
+    if(isOpen) {
+      document.addEventListener('keydown', closeByEscape);
+      return () => {
+        document.removeEventListener('keydown', closeByEscape);
+      }
+    }
+  }, [isOpen]) 
+
+
   function handleEditAvatarClick() {
     setEditAvatarPopup(true)
   }
@@ -169,7 +186,7 @@ function App() {
     }, [handleToken]
   )
 
-  function entranceOut() {
+  function logOut() {
     localStorage.removeItem('jwt');
     setLoggedIn(false)
     history.push('/sign-in')
@@ -180,7 +197,7 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header loggedIn={loggedIn} email={email} entranceOut={entranceOut} />
+        <Header loggedIn={loggedIn} email={email} logOut={logOut} />
         <Switch>
           <ProtectedRoute exact path="/"
             component={Main}

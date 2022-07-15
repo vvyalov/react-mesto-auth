@@ -7,11 +7,11 @@ function Login({ onLogin }) {
   const [password, setPassword] = React.useState('')
 
 
-  function emailChange(e) {
+  function handleEmailChange(e) {
     setEmail(e.target.value)
   }
 
-  function passwordChange(e) {
+  function handlePasswordChange(e) {
     setPassword(e.target.value)
   }
 
@@ -25,8 +25,8 @@ function Login({ onLogin }) {
       title="Вход"
       buttonText="Войти"
       onSubmit={handleSubmit}>
-      <input id="email" type="email" name="email" placeholder="Email" className="entrance__input entrance__input_type_email" required minLength="2" maxLength="40" value={email || ''} onChange={emailChange} />
-      <input id="password" type="password" name="password" placeholder="Пароль" className="entrance__input entrance__input_type_password" required minLength="2" maxLength="40" value={password || ''} onChange={passwordChange} />
+      <input id="email" type="email" name="email" placeholder="Email" className="entrance__input entrance__input_type_email" required minLength="2" maxLength="40" value={email || ''} onChange={handleEmailChange} />
+      <input id="password" type="password" name="password" placeholder="Пароль" className="entrance__input entrance__input_type_password" required minLength="2" maxLength="40" value={password || ''} onChange={handlePasswordChange} />
     </Entrance>
   );
 }

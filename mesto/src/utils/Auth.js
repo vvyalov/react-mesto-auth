@@ -5,7 +5,7 @@ class Auth {
   }
 
 
-  _statusServer(res) {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -23,7 +23,7 @@ class Auth {
         email: email
       })
     })
-      .then(this._statusServer)
+      .then(this._checkResponse)
   }
 
   authorize(password, email) {
@@ -35,7 +35,7 @@ class Auth {
         email
       })
     })
-      .then(this._statusServer)
+      .then(this._checkResponse)
   }
 
   checkToken(jwt) {
@@ -43,7 +43,7 @@ class Auth {
       method: 'GET',
       headers: { ...this.headers, "Authorization": `Bearer ${jwt}` }
     })
-      .then(this._statusServer)
+      .then(this._checkResponse)
   }
 
 };

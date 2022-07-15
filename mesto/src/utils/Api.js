@@ -5,7 +5,7 @@ class Api {
   }
 
 
-  _statusServer(res) {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
@@ -19,7 +19,7 @@ class Api {
       method: 'GET',
       headers: this._headers
     })
-      .then(this._statusServer)
+      .then(this._checkResponse)
   }
 
   getUserInfo() {
@@ -27,7 +27,7 @@ class Api {
       method: 'GET',
       headers: this._headers,
     })
-      .then(this._statusServer)
+      .then(this._checkResponse)
   }
 
   setUserInfo(data) {
@@ -38,7 +38,7 @@ class Api {
         name: data.name,
         about: data.about
       })
-    }).then(this._statusServer)
+    }).then(this._checkResponse)
   }
 
   newAvatar(link) {
@@ -48,7 +48,7 @@ class Api {
       body: JSON.stringify({
         avatar: link
       })
-    }).then(this._statusServer)
+    }).then(this._checkResponse)
   }
 
   getInitialNewCard(data) {
@@ -59,7 +59,7 @@ class Api {
         name: data.name,
         link: data.link
       })
-    }).then(this._statusServer)
+    }).then(this._checkResponse)
   }
 
 
@@ -67,7 +67,7 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers
-    }).then(this._statusServer)
+    }).then(this._checkResponse)
   }
 
   changeLikeCardStatus(id, isLiked) {
@@ -83,14 +83,14 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers
-    }).then(this._statusServer)
+    }).then(this._checkResponse)
   }
 
   removeLike(id) {
     return fetch(`${this._baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers
-    }).then(this._statusServer)
+    }).then(this._checkResponse)
   }
 };
 
